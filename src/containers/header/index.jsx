@@ -1,15 +1,21 @@
 import React from "react";
 import { Wrapper, Flex, Button } from "components/ui";
-import { HeaderSC } from "./styled";
+import { HeaderSC, Absolute, HeaderText } from "./styled";
 import { ReactComponent as Logo } from "assets/logo.svg";
 
 function Header(){
 return(
     <HeaderSC>
-        <Wrapper height="100%">
+        <Wrapper reLative height="100%">
             <Flex padding="24px 0 0">
                 <Logo />
             </Flex>
+              <Absolute>
+                <HeaderText red weight={700}> new </HeaderText>
+                <HeaderText> ideal </HeaderText>
+                <HeaderText size='71px' weight={900} space='30px'>Fuel EX 9.8 GX</HeaderText>
+                <Button>make order</Button>
+             </Absolute>
         </Wrapper>
     </HeaderSC>
 )
