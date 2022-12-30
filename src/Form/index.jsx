@@ -28,6 +28,17 @@ function Form() {
             error: false,
         },
     });
+
+    const [deliveryNumber, setDeliveryNumber] = useState({
+        value:"",
+        error:false,
+    });
+    const onChangeFormData = (key) => (e) => {
+        setFormData((prev) => ({...prev, [key] : {...prev[key], value: e.target.value}}))
+    };
+    const onChangeDelivery = (e) => {
+        setDeliveryNumber((prev) => ({...prev, value: e.target.value}))
+    };
 return (
     <BorderContainer >
         <Flex>
@@ -47,9 +58,42 @@ return (
         {selectedTab === 0 && (
                 <Flex padding="60px 80px" direction="column"> 
                     <img src={Checkout} alt="" />
-                    <Title>FUEL EX 9.8</Title>
+                    <Title margin="30px 0 100px">FUEL EX 9.8</Title>
                     <form>
-                        
+                     <TextField
+                      placeholder="Full name:"
+                      errorLabel="
+                      Please enter your full name"
+                      error={formData["name"].error}
+                      value={formData["name"].value}
+                      onChange={onChangeFormData("name")}
+                     /> 
+                     <TextField
+                      placeholder="E-mail:"
+                      errorLabel="
+                      Please enter your E-mail"
+                      error={formData["email"].error}
+                      value={formData["email"].value}
+                      onChange={onChangeFormData("email")}
+                     />  
+                     <TextField
+                      placeholder="phone number:"
+                      errorLabel="
+                      Please enter your phone"
+                      error={formData["phone"].error}
+                      value={formData["phone"].value}
+                      onChange={onChangeFormData("phone")}
+                     />  
+                     <TextField
+                      disabled
+                      placeholder="Delivery date:"
+                      errorLabel="Delivery date"
+                      error={formData["date"].error}
+                      value={formData["date"].value}
+                      onChange={onChangeFormData("date")}
+                     />  
+
+                     <Button type="submit"> Make order </Button>
                     </form>
                     
 
@@ -57,7 +101,20 @@ return (
             )}
 
         {selectedTab === 1 && (
-                <Flex> Tab 2</Flex>
+            <Flex padding="60px 80px" direction="column"> 
+                    {/* <img src={Checkout} alt="" /> */}
+                    <Text margin="30px 0 100px">Enter your order number to check its status</Text>  
+                    <form action="">
+                    <TextField
+                      placeholder="Order number:"
+                      errorLabel="Please enter Order code"
+                      error={formData["phone"].error}
+                      value={formData["phone"].value}
+                      onChange={onChangeDelivery}
+                     />  
+                     <Button type="submit"> get information an order </Button>
+                    </form>
+            </Flex>
             )}
         
     </BorderContainer>
