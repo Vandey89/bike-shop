@@ -1,11 +1,11 @@
-import React from "react";
+import React, {forwardRef} from "react";
 import { Wrapper, Title, Text } from "components/ui";
 import Form from "Form";
 
-const Order = () => (
+const Order = forwardRef((_, ref) => (
     <section>
         <Wrapper>
-        <Title withBorder margin='70px 0 30px'>
+        <Title ref={ref} withBorder margin='70px 0 30px'>
         BE THE FIRST
         </Title>
         <Text>
@@ -17,6 +17,6 @@ const Order = () => (
         <Form />
         </Wrapper>
     </section>
-)
+));
 
 export default Order;

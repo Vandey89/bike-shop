@@ -1,4 +1,4 @@
-import React from "react";
+import React, {forwardRef} from "react";
 import { Wrapper, Flex, Title, Text, Hr, Button } from "components/ui";
 import Carousel from 'components/carousel/Carousel';
 import ColorPicker from "components/ColorPicker";
@@ -45,9 +45,9 @@ const images = [image1, image2, image3, image4, image5, image6, image7, image8 ]
 
 
 
-function Product(){
+const Product = forwardRef(({ handleOrderScroll }, ref) => (
 
-return(
+
     <section>
         <Wrapper>
             <Title withBorder margin='70px 0 30px' >
@@ -59,7 +59,7 @@ return(
                     size that will fit your frame: XS frames are available with 27.5" wheels, S frames can choose between 27.5" or 29",
                     and sizes M to XL are available with 29" wheels. The Fuel EX 9.8 is a great investment for one bike that can do it all.
                 </Text>
-                        <Flex gap='30px'>
+                        <Flex gap='30px' ref={ref}>
                 <Flex flex={1}>
                     <Carousel>
                         {images.map((image) => (<img src={image} key={image} alt={image} /> ))}
@@ -99,13 +99,13 @@ return(
                                 </Flex>
                         </Flex>
                         <CountPicker />
-                        <Button>make order</Button>
+                        <Button onClick={handleOrderScroll}>make order</Button>
                     </Flex>
             </Flex>
         </ Wrapper>
     </section>
-);
+));
 
-}
+
 
 export default Product;
