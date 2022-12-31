@@ -10,7 +10,7 @@ const Tabs = ['Check order', 'Check order status']
 function Form() {
 const { size, color, count } = useContext(Context);
 const [selectedTab, setSelectedTab] = useState(0);
-const [submitIsDone, setSubmitDone] = useState("");
+const [submitIsDone, setSubmitIsDone] = useState("");
 const [status, setStatus] = useState();
 const [formData, setFormData] = useState({
         name: {
@@ -36,14 +36,14 @@ const [deliveryNumber, setDeliveryNumber] = useState({
         error:false,
     });
 const onChangeFormData = (key) => (e) => {
-        setFormData((prev) => ({...prev, [key] : {...prev[key], value: e.target.value}}))
+        setFormData((prev) => ({...prev, [key] : {...prev[key], value: e.target.value},}));
     };
 const onChangeDelivery = (e) => {
         setDeliveryNumber((prev) => ({...prev, value: e.target.value}))
     };
 const validateFormData = () => {
     let obj = {...formData};
-    Object.keys(obj).forEach((key) => obj[key].error = !obj[key].value)
+    Object.keys(obj).forEach((key) => obj[key].error = !obj[key].value);
     setFormData(obj);
     return Object.keys(obj).every(key => !obj[key].error)
 };
@@ -62,22 +62,22 @@ const onSubmitFormData = (e) => {
             "phone": formData.phone.value,
             size,
             color,
-            count
+            count,
         })
-    }).then(res => res.json()).then(({id}) => setSubmitDone(`Your order code${id}`));
+    }).then(res => res.json()).then(({id}) => setSubmitIsDone(`Your order code: ${id}`));
     }
 };
-const validateDelivery = () => {
-    setDeliveryNumber((prev) => ({...prev, error: !prev.value}))
-}
+// const validateDelivery = () => {
+//     setDeliveryNumber((prev) => ({...prev, error: !prev.value}))
+// }
 const onSubmitDelivery = (e) => {
     e.preventDefault();
-    if(validateDelivery()){
+    // if(validateDelivery()){
         fetch(`http://localhost:3000/bike-request/${deliveryNumber.value}`)
             .then(res => {
                 setStatus(deliveryNumber.value ? res.status : "")
             })
-    }
+    // }
 }
 
 return (
@@ -145,16 +145,16 @@ return (
                     <TextField
                       placeholder="Order number:"
                       errorLabel="Please enter Order code"
-                      error={formData["phone"].error}
-                      value={formData["phone"].value}
+                      error={deliveryNumber.error}
+                      value={deliveryNumber.value}
                       onChange={onChangeDelivery}
                      />  
                      <Button type="submit"> get information an order </Button>
                      <p>
                         {({
-                            200: "Order is waiting to be shipped ",
-                            400: "Invalid order code",
-                        }[status] || '')}
+                            200: 'Order is waiting to be shipped ',
+                            404: 'Invalid order code',
+                        }[status]) || ''}
                      </p>
                     </form>
             </Flex>
