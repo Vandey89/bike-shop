@@ -26,4 +26,12 @@ export const HeaderText = styled.h1`
     font-weight: ${({weight}) => (weight ? 'weight' : 400)};
     font-size: ${({size}) => (size ? 'size' : '55px')};
     color: ${({ red }) => ( red  ? '#E6110C' : '#FFF')};
-    `
+    `;
+
+export const Vremya = styled.div`
+    left: 900px;
+    height: 30px;
+    position: relative;
+    width: 220px;
+    color: rgba(0,255,0.9)
+`;

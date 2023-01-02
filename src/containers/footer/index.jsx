@@ -11,9 +11,9 @@ return(
    <FooterSC>
     <Wrapper height='100%'>
         <Flex height='100%' justify='space-between'>
-            <Logo />
+        <a href="https://ru.wikipedia.org/wiki/Trek_Bicycle_Corporation" rel='noreferrer' target='_blank'><Logo /></a> 
             <LinkContainer>
-                <a href="https://twitter.com/l97496422" rel='noreferrer' target='_blank'><Twitter/></a>
+                <a href="https://twitter.com/Vandey30" rel='noreferrer' target='_blank'><Twitter/></a>
                 <a href="https://facebook.com/" rel='noreferrer' target='_blank'><Facebook/></a>
                 <a href="https://t.me/korotenko_ivan" rel='noreferrer' target='_blank'><Telegram/></a>
             </LinkContainer>
